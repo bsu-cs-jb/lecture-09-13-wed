@@ -1,4 +1,4 @@
-# Lecture Repo: 2023-09-11 Mon
+# Lecture Repo: 2023-09-13 Wed
 
 ## Goal
 
