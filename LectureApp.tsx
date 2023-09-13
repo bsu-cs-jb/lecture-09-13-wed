@@ -12,7 +12,7 @@ import {
   View,
 } from "react-native";
 
-export default function LectureApp() {
+export default function LectureApp({ navigation }) {
   const [birdInputText, setBirdInputText] = useState("");
   const [birdText, setBirdText] = useState("No birds here yet.");
   const [submissions, setSubmissions] = useState(0);
@@ -47,6 +47,12 @@ export default function LectureApp() {
       style={styles.avoidingView}
     >
       <View style={styles.container}>
+        <Button
+          title="Edit Timer Sets"
+          onPress={() => {
+            navigation.navigate("Timer Sets");
+          }}
+        />
         <Text style={styles.titleText}>Lecture Base Repo</Text>
         <Text style={styles.subTitleText}>A decent place to start</Text>
         <ScrollView style={styles.scrollContainer}>
