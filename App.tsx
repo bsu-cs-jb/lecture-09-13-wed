@@ -2,7 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { EventsView } from "./EventsView";
-import { WatchEventView } from "./WatchEvent";
+import { WatchEventView } from "./WatchEventView";
 import { RootStackParamList } from "./types";
 import { WatchRecordModal } from "./WatchRecordModal";
 

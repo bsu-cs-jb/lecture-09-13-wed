@@ -8,21 +8,25 @@ import styles from "./styles";
 type Props = StackScreenProps<RootStackParamList, "Event">;
 
 export function WatchEventView({ navigation, route }: Props) {
-  const { event } = route?.params || {};
+  const { event } = route?.params || { event: [] };
+
+  const watchRecordsComponents = [];
+  for (const record of event.watchRecords) {
+    watchRecordsComponents.push(
+      <TouchableOpacity
+        key={record.id}
+        onPress={() => navigation?.navigate("Edit Watch Record", { record })}
+      >
+        <LabelText key={record.name}>Record: {record.name}</LabelText>
+      </TouchableOpacity>,
+    );
+  }
+
   return (
     <View style={styles.container}>
-      <TitleText>Watch Event</TitleText>
+      <TitleText>{event.date}</TitleText>
       <ScrollView style={styles.scrollContainer}>
-        {event?.watchRecords?.map((record) => (
-          <TouchableOpacity
-            key={record.id}
-            onPress={() =>
-              navigation?.navigate("Edit Watch Record", { record })
-            }
-          >
-            <LabelText key={record.name}>Record: {record.name}</LabelText>
-          </TouchableOpacity>
-        ))}
+        {watchRecordsComponents}
       </ScrollView>
       <View style={styles.flexFill} />
     </View>

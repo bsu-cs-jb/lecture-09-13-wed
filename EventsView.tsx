@@ -29,7 +29,7 @@ const fakeEvent: WatchEvent = {
 };
 
 export function EventsView({ navigation, route }: EventsViewProps) {
-  const { events } = route?.params || {};
+  const { events } = route?.params || { events: [] };
 
   const handlePress = (name: string) => {
     navigation?.navigate("Event", {
@@ -39,16 +39,20 @@ export function EventsView({ navigation, route }: EventsViewProps) {
       },
     });
   };
+
+  const eventComponents = [];
+  for (const name of events) {
+    eventComponents.push(
+      <TouchableOpacity key={name} onPress={() => handlePress(name)}>
+        <LabelText>Event: {name}</LabelText>
+      </TouchableOpacity>,
+    );
+  }
+
   return (
     <View style={styles.container}>
       <TitleText>Bird Watching Events</TitleText>
-      <ScrollView style={styles.scrollContainer}>
-        {events?.map((name) => (
-          <TouchableOpacity key={name} onPress={() => handlePress(name)}>
-            <LabelText>Event: {name}</LabelText>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
+      <ScrollView style={styles.scrollContainer}>{eventComponents}</ScrollView>
       <View style={[styles.flexFill]} />
     </View>
   );
